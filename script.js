@@ -19,7 +19,7 @@ searchButton.addEventListener('click', () => {
 // Function to fetch movie data from OMDb API
 async function searchMovie(title) {
     // Use the OMDb API to get movie data
-    const movieUrl = `https://www.omdbapi.com/?t=${title}&apikey=${API_KEY}`;
+    const movieUrl = `http://www.omdbapi.com/?t=${title}&apikey=${API_KEY}`;
     
     try {
         const response = await fetch(movieUrl);
