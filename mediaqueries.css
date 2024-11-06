@@ -1,0 +1,78 @@
+/* Base styles for larger screens */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin-top: 20px ;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input[type="text"]{
+    width: 50%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: inline-block;
+}
+button {
+    width: 50px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+#movieDetails {
+    text-align: center;
+    margin-top: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    input[type="text"], button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    #movieDetails {
+        font-size: 14px;
+    }
+
+    img {
+        max-width: 150px;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    input[type="text"], button {
+        padding: 8px;
+    }
+
+    #movieDetails {
+        font-size: 12px;
+    }
+}

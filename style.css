@@ -1,0 +1,91 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('./assests/review.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.container {
+    text-align: center;
+    width: 80%;
+    margin-top: 20px;
+    max-width: 800px;
+}
+.heading{
+    background-image: url('./assests/reel.png');
+    background-size: cover; /* Adjusts the image to cover the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat;
+    background-size: 400px 250px;
+}
+
+h1 {
+    color:white;
+    font-size: 5em;
+    display: inline-block;
+}
+.heading h2{
+ color: red;
+ font-size: 3rem;
+ display: inline-block;
+}
+
+.search-box {
+    margin: 20px 0;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+    font-size: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Movie Details */
+.movie-details {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.movie-details img {
+    max-width: 300px;
+    margin-bottom: 15px;
+}
+
+.movie-details h2 {
+    font-size: 2em;
+    margin: 10px 10px;
+    background-color: white;
+    margin: 0% 40%;
+}
+
+.movie-details p {
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
