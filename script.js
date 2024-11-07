@@ -1,64 +1,38 @@
-// Set your OMDb API key here
-const API_KEY = 'fe6e94db'; // Replace with your OMDb API key
-
-// DOM Elements
+const apiKey = '0a271e9683b26cbc285e09cbde62ec0d';  
+const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
-const movieTitleInput = document.getElementById('searchInput');
-const movieDetailsContainer = document.getElementById('movieDetails');
+const movieDetails = document.getElementById('movieDetails');
 
-// Event listener for the search button
 searchButton.addEventListener('click', () => {
-    const movieTitle = movieTitleInput.value.trim();
-    if (movieTitle) {
-        searchMovie(movieTitle);
-    } else {
-        alert("Please enter a movie title!");
+    const query = searchInput.value;
+    if (query) {
+        fetchMovieDetails(query);
     }
 });
 
-// Function to fetch movie data from OMDb API
-async function searchMovie(title) {
-    // Use the OMDb API to get movie data
-    const movieUrl = `http://www.omdbapi.com/?t=${title}&apikey=${API_KEY}`;
-    
+async function fetchMovieDetails(query) {
     try {
-        const response = await fetch(movieUrl);
+        const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}`);
         const data = await response.json();
 
-        if (data.Response === 'True') {
-            displayMovieDetails(data);
+        if (data.results && data.results.length > 0) {
+            const movie = data.results[0];  // Get the first result
+            displayMovieDetails(movie);
+            console.log(movie);
         } else {
-            alert('Movie not found!');
-            movieDetailsContainer.innerHTML = '';
+            movieDetails.innerHTML = '<p>No results found.</p>';
         }
     } catch (error) {
         console.error('Error fetching data:', error);
+        movieDetails.innerHTML = '<p>Something went wrong. Please try again later.</p>';
     }
 }
 
-// Function to display movie details
-function displayMovieDetails(data) {
-    const movieDetailsContainer = document.getElementById('movieDetails');
-    
-    // If no movie found, show a message
-    if (data.Response === "False") {
-        movieDetailsContainer.innerHTML = `<p>No movie found. Please try again with a different title.</p>`;
-        return;
-    }
-
-    // Check if poster exists, if not, use a placeholder image
-    const posterUrl = data.Poster !== "N/A" ? data.Poster : 'https://via.placeholder.com/200x300.png?text=No+Poster';
-
-    // Displaying movie details
-    const movieHTML = `
-        <h2>${data.Title} (${data.Year})</h2>
-        <img src="${posterUrl}" alt="Movie Poster" style="max-width: 200px; height: auto;">
-        <p><strong>Genre:</strong> ${data.Genre}</p>
-        <p><strong>Released:</strong> ${data.Released}</p>
-        <p><strong>Director:</strong> ${data.Director}</p>
-        <p><strong>Plot:</strong> ${data.Plot}</p>
+function displayMovieDetails(movie) {
+    movieDetails.innerHTML = `
+        <h2>${movie.title} (${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'})</h2>
+        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title} Poster">
+        <p><strong>Overview:</strong> ${movie.overview}</p>
+        <p><strong>Rating:</strong> ${movie.vote_average} / 10</p>
     `;
-    
-    movieDetailsContainer.innerHTML = movieHTML;
 }
-
